@@ -1,0 +1,175 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/mixins" as *;
+@use "../helpers/funcs" as *;
+
+$SHOW_LINES_DELAY: 350ms;
+
+.to-show {
+  opacity: 0;
+  transform: translateY(100%);
+
+  @include smoothy-transition();
+
+  &.showed {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.orange-btn {
+  color: $orange;
+  background-color: transparent;
+
+  font-size: px-to-rem(18);
+  text-transform: capitalize;
+
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: px-to-rem(6);
+
+  cursor: pointer;
+
+  @include fast-transition();
+
+  &:hover {
+    color: $white;
+  }
+
+  > i {
+    font-size: px-to-rem(15);
+  }
+}
+
+.link {
+  position: relative;
+
+  text-transform: capitalize;
+
+  font-weight: 500;
+
+  color: $white;
+
+  @include fast-transition();
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 0%;
+    height: 1.5px;
+
+    opacity: 0;
+
+    background-color: $orange;
+
+    @include smoothy-transition();
+  }
+
+  &.active {
+    color: $orange;
+
+    &:hover {
+      color: $white;
+    }
+
+    &::before {
+      width: 50%;
+
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.animated-border-top {
+  position: relative;
+
+  &::before {
+    content: "";
+
+    width: 0%;
+    height: 1px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: $white;
+
+    @include smoothy-transition();
+  }
+
+  &.show-animated-border-top::before {
+    width: 100%;
+  }
+}
+
+.underlined-title {
+  text-transform: capitalize;
+
+  font-size: px-to-rem(38);
+
+  margin: 0 auto px-to-rem(30);
+
+  width: fit-content;
+
+  position: relative;
+
+  opacity: 0;
+
+  @include smoothy-transition();
+
+  &::before,
+  &::after {
+    content: "";
+
+    width: 0%;
+    height: 1px;
+
+    background-color: $orange;
+
+    position: absolute;
+
+    @include smoothy-transition();
+  }
+
+  &::before {
+    left: 0;
+
+    bottom: px-to-rem(-4);
+
+    transition-delay: $SHOW_LINES_DELAY;
+  }
+
+  &::after {
+    right: 0;
+
+    bottom: px-to-rem(-9);
+
+    transition-delay: calc($SHOW_LINES_DELAY * 2);
+  }
+
+  &.show-lines {
+    opacity: 1;
+
+    &::before,
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.is-section {
+  padding: px-to-rem(24) 0;
+}

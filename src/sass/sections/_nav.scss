@@ -1,0 +1,222 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/funcs" as *;
+@use "../helpers/mixins" as *;
+
+$nav-y-padding: px-to-rem(20);
+
+.main-nav {
+  padding-top: $nav-y-padding;
+  padding-bottom: $nav-y-padding;
+
+  @include fx-sp-btween-center();
+
+  &__page-sections {
+    display: none;
+
+    @include mb {
+      display: flex;
+      gap: px-to-rem(25);
+    }
+  }
+
+  &__page-sections-mobile {
+    display: block;
+
+    @include mb {
+      display: none;
+    }
+
+    .hamburger-icon {
+      color: $white;
+
+      font-size: px-to-rem(23);
+    }
+
+    .menu {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+
+      height: 100%;
+      width: 0%;
+
+      opacity: 0;
+
+      background-color: $black;
+
+      @include fx-col;
+      justify-content: space-between;
+
+      @include smoothy-transition();
+
+      &.show {
+        width: 100%;
+
+        opacity: 1;
+
+        padding: px-to-rem(30) px-to-rem(20);
+      }
+
+      .close-img-wrapper {
+        display: flex;
+        justify-content: flex-end;
+
+        > i {
+          color: $white;
+
+          font-size: px-to-rem(30);
+        }
+      }
+
+      .links {
+        @include fx-col;
+        justify-content: center;
+        align-items: center;
+        gap: px-to-rem(28);
+        flex: 1;
+        > a {
+          font-size: px-to-rem(21);
+        }
+      }
+    }
+  }
+
+  &__contact-links {
+    @include fx-sp-btween();
+    gap: px-to-rem(8);
+
+    @include mb {
+      gap: px-to-rem(10);
+    }
+
+    position: relative;
+
+    a {
+      $ANIMATION_DURATION: 2200ms;
+      $ANIMATION_DELAY: 400ms;
+
+      &.fade-right {
+        pointer-events: none;
+
+        &:first-of-type {
+          animation: fade-right-first $ANIMATION_DURATION linear
+            calc($ANIMATION_DELAY * 2) 1 forwards;
+        }
+        &:nth-of-type(2) {
+          animation: fade-right-second $ANIMATION_DURATION linear
+            $ANIMATION_DELAY 1 forwards;
+        }
+        &:last-of-type {
+          animation: fade-right-third $ANIMATION_DURATION linear 0ms 1 forwards;
+        }
+      }
+
+      &.fade-left {
+        &:first-of-type {
+          animation: fade-left $ANIMATION_DURATION linear
+            calc($ANIMATION_DELAY * 2) 1 forwards;
+        }
+        &:nth-of-type(2) {
+          animation: fade-left $ANIMATION_DURATION linear $ANIMATION_DELAY 1
+            forwards;
+        }
+        &:last-of-type {
+          animation: fade-left $ANIMATION_DURATION linear 0ms 1 forwards;
+        }
+      }
+    }
+
+    i {
+      color: $white;
+
+      font-size: px-to-rem(20);
+
+      @include mb {
+        font-size: px-to-rem(25);
+      }
+
+      @include fast-transition();
+
+      &.show-more-links {
+        cursor: pointer;
+      }
+
+      &:hover {
+        color: $orange;
+      }
+    }
+
+    .more-links-box {
+      position: absolute;
+
+      top: 0;
+      right: 0;
+      z-index: 100;
+
+      padding: px-to-rem(15);
+
+      background: $black;
+
+      border: 1px solid $white;
+      border-radius: 5px;
+
+      display: flex;
+      flex-direction: column;
+      gap: px-to-rem(15);
+
+      text-transform: capitalize;
+      text-align: center;
+
+      @include smoothy-transition();
+
+      &.unshowed {
+        transform: translateY(-150%);
+      }
+
+      &.showed {
+        transform: translateY(0%);
+      }
+
+      > {
+        a,
+        i {
+          color: $white;
+
+          @include fast-transition();
+
+          &:hover {
+            color: $orange;
+          }
+        }
+
+        a {
+          font-weight: 500;
+        }
+
+        i {
+          cursor: pointer;
+
+          width: fit-content;
+
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@include anm-fade(fade-right-first, 500px);
+@include anm-fade(fade-right-second, 500px);
+@include anm-fade(fade-right-third, 500px);
+
+@keyframes fade-left {
+  from {
+    transform: translateX(500px);
+  }
+
+  to {
+    transform: translateX(0px);
+  }
+}

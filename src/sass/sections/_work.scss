@@ -1,0 +1,207 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/funcs" as *;
+@use "../helpers/mixins" as *;
+
+$FADE_ANIMATION_DELAY: 450ms;
+
+.main {
+  &__work {
+    color: $white;
+
+    margin-bottom: px-to-rem(80);
+
+    .my-work {
+      &__tags {
+        text-align: center;
+
+        margin-bottom: px-to-rem(28);
+
+        font-size: px-to-rem(34);
+
+        color: $orange;
+
+        &::before,
+        &::after {
+          background-color: $white !important;
+        }
+      }
+
+      .tags-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: px-to-rem(15);
+
+        margin-bottom: px-to-rem(24);
+
+        > .tag {
+          text-transform: capitalize;
+          font-weight: bold;
+
+          cursor: pointer;
+
+          padding: px-to-rem(8);
+
+          border-radius: px-to-rem(2);
+
+          background-color: rgba($orange, 0.9);
+
+          @include smoothy-transition();
+
+          @include full-border($white);
+
+          transform: translateY(100%);
+
+          opacity: 0;
+
+          &.faded {
+            transform: translateY(0%);
+
+            opacity: 1;
+          }
+
+          &.selected {
+            background-color: $black;
+
+            &::before,
+            &::after {
+              width: 100%;
+            }
+
+            .left-border,
+            .right-border {
+              height: 100%;
+            }
+          }
+        }
+      }
+
+      &__projects {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: px-to-rem(35);
+
+        transition-delay: 250ms;
+
+        > .project {
+          cursor: pointer;
+
+          width: px-to-rem(400);
+
+          position: relative;
+
+          overflow-y: hidden;
+
+          &:hover .curtain {
+            height: 100%;
+          }
+
+          &:hover .techs__tech,
+          &:hover .desp {
+            transform: translateY(0);
+
+            opacity: 1;
+
+            transition-delay: 400ms;
+          }
+
+          .curtain {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 98;
+
+            height: 0%;
+            width: 100%;
+
+            background-color: rgba($color: $black, $alpha: 0.6);
+
+            @include smoothy-transition();
+          }
+
+          .techs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+
+            overflow-y: hidden;
+
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            row-gap: px-to-rem(12);
+            column-gap: px-to-rem(6);
+
+            padding: px-to-rem(15) px-to-rem(8);
+
+            width: 100%;
+
+            &__tech {
+              color: $black;
+              background-color: $white;
+
+              border-radius: px-to-rem(2);
+
+              text-transform: capitalize;
+              font-weight: 500;
+
+              padding: px-to-rem(3);
+
+              font-size: px-to-rem(14);
+
+              @include mb {
+                font-size: 1rem;
+              }
+
+              transform: translateY(px-to-rem(-200));
+              opacity: 0;
+
+              @include smoothy-transition();
+            }
+          }
+
+          // Decription
+          .desp {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 99;
+
+            width: 100%;
+
+            text-align: center;
+            text-transform: capitalize;
+            line-height: 1.4;
+
+            padding-bottom: px-to-rem(12);
+
+            font-size: px-to-rem(14);
+            font-weight: 500;
+
+            transform: translateY(100%);
+            opacity: 0;
+
+            @include smoothy-transition();
+
+            @include mb {
+              font-size: px-to-rem(16);
+            }
+          }
+        }
+
+        .no-project {
+          text-transform: capitalize;
+
+          font-weight: bold;
+        }
+      }
+
+      .view-more {
+        margin: px-to-rem(20) auto 0;
+      }
+    }
+  }
+}

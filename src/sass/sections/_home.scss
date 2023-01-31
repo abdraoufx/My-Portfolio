@@ -1,0 +1,207 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/funcs" as *;
+@use "../helpers/mixins" as *;
+
+$BORDER_ANIMATION_DELAY: 350ms;
+
+@mixin custom-med-brkp {
+  @media (min-width: 590px) and (max-width: 624px) {
+    @content;
+  }
+}
+
+@mixin custom-small-brkp {
+  @media (max-width: 317px) {
+    @content;
+  }
+}
+
+.main {
+  &__home {
+    color: $white;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    align-items: center;
+
+    @include mb {
+      align-items: flex-start;
+    }
+
+    max-width: px-to-rem(710);
+
+    padding-bottom: px-to-rem(25);
+
+    @include smoothy-transition();
+
+    > *,
+    > * > * {
+      @include smoothy-transition();
+    }
+
+    &.unshowed {
+      transform: translateY(2%);
+      > *,
+      > * > * {
+        opacity: 0;
+      }
+    }
+
+    &.showed {
+      transform: translateY(0%);
+      > *,
+      > * > * {
+        opacity: 1;
+      }
+    }
+
+    .small-intro {
+      font-weight: lighter;
+      font-size: px-to-rem(18);
+
+      @include mb {
+        font-size: px-to-rem(22);
+      }
+
+      text-transform: capitalize;
+
+      margin-bottom: px-to-rem(22);
+
+      @include fx-y-center();
+      gap: px-to-rem(8);
+      flex-wrap: wrap;
+
+      > .name {
+        font-weight: 600;
+
+        &.border-trns {
+          padding: px-to-rem(4) px-to-rem(10);
+        }
+
+        @include full-border($orange);
+      }
+
+      & + .job {
+        position: relative;
+
+        font-size: px-to-rem(20);
+
+        text-align: center;
+
+        @include mb {
+          text-align: unset;
+
+          font-size: px-to-rem(40);
+        }
+
+        text-transform: capitalize;
+
+        margin-bottom: px-to-rem(18);
+
+        width: fit-content;
+
+        &::before,
+        &::after {
+          content: "";
+
+          position: absolute;
+
+          width: 0%;
+          height: 1px;
+
+          background-color: $orange;
+
+          @include smoothy-transition();
+        }
+
+        &.show-lines::before,
+        &.show-lines::after {
+          width: 100%;
+
+          @include custom-med-brkp() {
+            max-width: px-to-rem(380);
+          }
+
+          @include custom-small-brkp() {
+            max-width: px-to-rem(185);
+          }
+        }
+
+        &::before {
+          bottom: -1px;
+          left: 0;
+
+          @include custom-small-brkp() {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        &::after {
+          bottom: -6px;
+          right: 0;
+
+          @include custom-med-brkp() {
+            left: 0;
+          }
+
+          @include custom-small-brkp() {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+          transition-delay: 180ms;
+        }
+
+        & + .bio {
+          font-size: 1rem;
+
+          text-align: center;
+
+          @include mb {
+            text-align: unset;
+
+            font-size: px-to-rem(19);
+          }
+
+          line-height: 1.6;
+
+          margin-bottom: px-to-rem(22);
+
+          > span {
+            display: block;
+
+            text-transform: none;
+
+            margin-top: px-to-rem(12);
+
+            > a {
+              color: $orange;
+
+              @include fast-transition;
+
+              &:hover {
+                color: $white;
+              }
+            }
+          }
+
+          & + .get-in {
+            width: fit-content;
+
+            text-transform: capitalize;
+
+            @include fast-transition();
+
+            > i {
+              @include fast-transition();
+            }
+          }
+        }
+      }
+    }
+  }
+}

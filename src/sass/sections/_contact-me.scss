@@ -1,0 +1,115 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/funcs" as *;
+@use "../helpers/mixins" as *;
+
+$LINE_HEIGHT: 2px;
+
+.main {
+  &__contact {
+    color: $white;
+
+    padding-bottom: 9rem;
+
+    .shape {
+      position: relative;
+
+      width: calc(100% - px-to-rem(80));
+      height: $LINE_HEIGHT;
+
+      margin: px-to-rem(100) auto 0;
+
+      .top-line {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 80;
+
+        width: 0%;
+        height: $LINE_HEIGHT;
+
+        background-color: $white;
+
+        @include smoothy-transition();
+
+        &.full-width {
+          width: 100%;
+        }
+      }
+
+      .horz-lines-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 90;
+
+        width: 100%;
+
+        @include fx-sp-btween();
+
+        &__line {
+          position: relative;
+
+          height: 0;
+          width: $LINE_HEIGHT;
+
+          background-color: $white;
+
+          @include smoothy-transition();
+
+          &.full-height {
+            height: px-to-rem(120);
+          }
+
+          .icon {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: $white;
+
+            border-radius: 50%;
+
+            height: px-to-rem(35);
+            width: px-to-rem(35);
+
+            opacity: 0;
+
+            &,
+            i {
+              @include smoothy-transition();
+            }
+
+            &.show {
+              opacity: 1;
+            }
+
+            &:hover {
+              background-color: $black;
+            }
+
+            &:hover i {
+              color: $orange;
+
+              transform: translateY(px-to-rem(-6));
+            }
+
+            i {
+              position: relative;
+              z-index: 1000;
+
+              font-size: px-to-rem(24);
+
+              color: $black;
+            }
+          }
+        }
+      }
+    }
+  }
+}

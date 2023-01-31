@@ -1,0 +1,126 @@
+@use "../helpers/funcs" as *;
+
+// Flex Box Mixins
+@mixin fx-sp-btween {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin fx-sp-btween-center {
+  @include fx-sp-btween();
+  align-items: center;
+}
+
+@mixin fx-y-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin fx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// My Ideas Mixins
+@mixin full-border($border-color) {
+  $BORDER_ANIMATION_DELAY: 350ms;
+
+  position: relative;
+
+  &.border-trns {
+    &::before,
+    &::after {
+      width: 100%;
+    }
+
+    .right-border,
+    .left-border {
+      height: 100%;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    background-color: $border-color;
+
+    width: 0%;
+    height: 1px;
+
+    @include smoothy-transition();
+  }
+
+  .right-border,
+  .left-border {
+    position: absolute;
+
+    height: 0%;
+    width: 1px;
+
+    background-color: $border-color;
+
+    @include smoothy-transition();
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+
+    transition-delay: calc($BORDER_ANIMATION_DELAY * 2);
+  }
+
+  .right-border {
+    right: 0;
+    top: 0;
+
+    transition-delay: $BORDER_ANIMATION_DELAY;
+  }
+
+  .left-border {
+    left: 0;
+    bottom: 0;
+
+    transition-delay: calc($BORDER_ANIMATION_DELAY * 3);
+  }
+}
+
+// Transitions Mixins
+@mixin fast-transition {
+  $duration: 180ms;
+
+  transition: $duration ease-out;
+}
+
+@mixin smoothy-transition {
+  $duration: 300ms;
+
+  transition: $duration ease-in;
+}
+
+// Animation Mixins
+@mixin anm-fade($name, $to-right-length) {
+  @keyframes #{$name} {
+    from {
+      transform: translateX(0px);
+    }
+
+    to {
+      transform: translateX($to-right-length);
+    }
+  }
+}
+
+// Media Queries ( Mobile 1st ) Mixins
+@mixin mb {
+  @media (min-width: 590px) {
+    @content;
+  }
+}

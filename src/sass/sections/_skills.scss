@@ -1,0 +1,77 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/funcs" as *;
+@use "../helpers/mixins" as *;
+
+$BORDER_ANIMATION_DELAY: 350ms;
+$FADE_ANIMATION_DELAY: 350ms;
+
+.main {
+  &__skills {
+    margin-bottom: px-to-rem(100 * 2);
+
+    .my-skills {
+      color: $white;
+
+      &__container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, px-to-rem(180));
+        grid-template-rows: 1fr;
+
+        row-gap: px-to-rem(35);
+        column-gap: px-to-rem(20);
+
+        justify-content: center;
+
+        @include mb {
+          justify-content: space-between;
+        }
+
+        &__skill {
+          @include fx-col();
+          gap: px-to-rem(10);
+
+          transform: translateX(-1000%);
+
+          &.faded {
+            transform: translateX(0%);
+          }
+
+          @for $i from 1 through 6 {
+            &:nth-of-type(#{$i}) {
+              transition: transform
+                ease-in
+                950ms
+                calc($FADE_ANIMATION_DELAY * $i);
+            }
+          }
+
+          .name {
+            font-size: px-to-rem(30);
+            font-weight: bold;
+
+            text-align: center;
+
+            @include mb {
+              text-align: left;
+            }
+          }
+
+          .exp {
+            position: relative;
+
+            max-width: px-to-rem(180);
+
+            text-align: center;
+
+            &.border-trns {
+              padding: px-to-rem(8) px-to-rem(10);
+            }
+
+            @include full-border($white);
+          }
+        }
+      }
+    }
+  }
+}

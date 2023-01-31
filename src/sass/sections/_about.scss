@@ -1,0 +1,75 @@
+@use "../layout/colors" as *;
+
+@use "../helpers/funcs" as *;
+@use "../helpers/mixins" as *;
+
+.main {
+  &__about {
+    margin-bottom: px-to-rem(100 * 2.5);
+
+    .about-me {
+      color: $white;
+
+      &__bio {
+        display: flex;
+        flex-direction: column;
+        gap: px-to-rem(18);
+
+        .head {
+          display: inline-flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+
+          .name {
+            font-weight: bold;
+
+            margin: 0 px-to-rem(5);
+
+            &.border-trns {
+              padding: px-to-rem(6) px-to-rem(8);
+            }
+
+            @include full-border($orange);
+          }
+        }
+
+        p {
+          font-size: px-to-rem(15);
+          font-weight: 500;
+          line-height: 1.8;
+
+          text-align: center;
+
+          @include mb {
+            text-align: left;
+            font-size: px-to-rem(17.5);
+          }
+
+          &.one .idea {
+            text-transform: capitalize;
+
+            font-weight: bold;
+          }
+        }
+
+        .about-skill,
+        .extra-skill {
+          font-weight: bold;
+
+          text-transform: capitalize;
+        }
+
+        .contact-me-btn {
+          text-transform: capitalize;
+
+          margin: 0 auto;
+
+          @include mb {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
