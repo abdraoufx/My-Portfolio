@@ -6,6 +6,8 @@
 $BORDER_ANIMATION_DELAY: 350ms;
 $FADE_ANIMATION_DELAY: 350ms;
 
+$NUMBER_OF_SKILLS: 8;
+
 .main {
   &__skills {
     margin-bottom: px-to-rem(100 * 2);
@@ -37,7 +39,7 @@ $FADE_ANIMATION_DELAY: 350ms;
             transform: translateX(0%);
           }
 
-          @for $i from 1 through 6 {
+          @for $i from 1 through $NUMBER_OF_SKILLS {
             &:nth-of-type(#{$i}) {
               transition: transform
                 ease-in
