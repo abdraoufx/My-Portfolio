@@ -11,6 +11,14 @@ const IMAGES_PATH: string = "/images/projects_images";
 
 export const projects: Project[] = [
   {
+    name: "image uploader",
+    img: `https://raw.githubusercontent.com/abdraoufx/image_uploader/main/images/main_site.png`,
+    techs: ["vanilla js", "typescript", "sass", "php"],
+    keywords: ["HTML", "sass", "php", "vanilla js"],
+    desp: "image uploader makes users able to upload their images with additional features",
+    url: "https://github.com/abdraoufx/image_uploader",
+  },
+  {
     name: "debt control system for shops",
     img: `${IMAGES_PATH}/dcsfso.png`,
     techs: ["react js", "typescript", "tailwind", "sass", "firebase"],
