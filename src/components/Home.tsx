@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import TransparentOrangeBtn from "./TransparentOrangeBtn";
+import { urls } from "../data/links";
 
 type Props = {
   navHeight: number;
@@ -47,17 +48,16 @@ const Home = ({ navHeight }: Props) => {
         website or Improve your Existing one.
         <span>
           Freelancer at{" "}
-          <a
-            href="https://www.upwork.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={urls.upworkURL} target="_blank" rel="noopener noreferrer">
             upwork.com
           </a>
           .
         </span>
       </p>
-      <TransparentOrangeBtn classes={["get-in"]}>
+      <TransparentOrangeBtn
+        classes={["get-in"]}
+        clickFnc={() => window.open(urls.upworkURL, "_blank")}
+      >
         get in touch
       </TransparentOrangeBtn>
     </section>
