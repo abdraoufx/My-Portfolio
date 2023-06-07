@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
+import { urls } from "../data/links";
 
 type Props = {
   setNavHeight: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const NavBar = ({ setNavHeight }: Props) => {
+  const { fbURL, twitterURL, githubURL, frontEndMentorURL, upworkURL } = urls;
+
   const nav = useRef<HTMLElement>(null!);
 
   const [isNavOpened, setIsNavOpened] = useState<boolean>(false);
@@ -187,25 +190,13 @@ const NavBar = ({ setNavHeight }: Props) => {
         </div>
       </div>
       <div className="main-nav__contact-links">
-        <a
-          href="https://github.com/abdraoufx"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={githubURL} target="_blank" rel="noopener noreferrer">
           <i className="ri-github-fill"></i>
         </a>
-        <a
-          href="https://twitter.com/abdraoufx"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={twitterURL} target="_blank" rel="noopener noreferrer">
           <i className="ri-twitter-fill"></i>
         </a>
-        <a
-          href="https://www.facebook.com/AbdRaouf.zk/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={fbURL} target="_blank" rel="noopener noreferrer">
           <i className="ri-facebook-circle-fill"></i>
         </a>
         <i
@@ -213,18 +204,10 @@ const NavBar = ({ setNavHeight }: Props) => {
           onClick={showMoreLinksBox}
         ></i>
         <div className="more-links-box unshowed" onClick={unshowMoreLinksBox}>
-          <a
-            href="https://www.upwork.com/freelancers/~0126c518b8543236eb"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={upworkURL} target="_blank" rel="noopener noreferrer">
             upwork
           </a>
-          <a
-            href="https://www.frontendmentor.io/profile/abdraoufx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={frontEndMentorURL} target="_blank" rel="noopener noreferrer">
             frontendmentor
           </a>
           <i className="ri-close-line"></i>

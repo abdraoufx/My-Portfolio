@@ -1,6 +1,7 @@
 import React from "react";
 import { Waypoint } from "react-waypoint";
 import TransparentOrangeBtn from "./TransparentOrangeBtn";
+import { urls } from "../data/links";
 
 type Props = {};
 
@@ -89,7 +90,10 @@ const About = (props: Props) => {
               I Have Extra Skills Not Showing Above Like : {renderExtraSkills()}
               .
             </p>
-            <TransparentOrangeBtn classes={["contact-me-btn"]}>
+            <TransparentOrangeBtn
+              classes={["contact-me-btn"]}
+              clickFnc={() => window.open(urls.fbURL, "_blank")}
+            >
               contact me
             </TransparentOrangeBtn>
           </div>
