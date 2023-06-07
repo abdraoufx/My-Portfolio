@@ -16,9 +16,12 @@ const Skills = (props: Props) => {
     { name: "Tailwind", exp: 1 },
     { name: "JavaScript", exp: 2 },
     { name: "React", exp: 2 },
+    { name: "PHP", exp: 1 },
+    { name: "MySQL", exp: 1 },
   ];
 
   const renderSkillsAsJSX = (): JSX.Element[] => {
+    // Need To Update Number Of skills in _skills.scss to add the animation
     return skills.map(({ name, exp }) => {
       return (
         <div

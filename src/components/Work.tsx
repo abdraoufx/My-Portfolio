@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Waypoint } from "react-waypoint";
 import { Project, projects } from "../data/projects";
 import TransparentOrangeBtn from "./TransparentOrangeBtn";
+import { urls } from "../data/links";
 
 type Props = {
   filterTags: string[];
@@ -98,7 +99,7 @@ const Work = ({ filterTags, setFilterTags }: Props) => {
     ): void => {
       if (e.currentTarget.classList.contains("selected")) {
         e.currentTarget.classList.remove("selected", "border-trns");
-        setFilterTags(filterTags.filter((f) => f !== tag));
+        setFilterTags(filterTags.filter((ft) => ft !== tag));
         return;
       }
 
@@ -118,10 +119,6 @@ const Work = ({ filterTags, setFilterTags }: Props) => {
     });
   };
 
-  const navigateToGithub = () => {
-    window.open("https://github.com/abdraoufx", "_blank");
-  };
-
   return (
     <Waypoint onEnter={toggleAnimations}>
       <section className="main__work container" id="work" ref={workSection}>
@@ -132,7 +129,7 @@ const Work = ({ filterTags, setFilterTags }: Props) => {
           <div className="my-work__projects to-show">{renderProjects()}</div>
           <TransparentOrangeBtn
             classes={["view-more"]}
-            clickFnc={navigateToGithub}
+            clickFnc={() => window.open(urls.githubURL, "_blank")}
           >
             view more
           </TransparentOrangeBtn>
