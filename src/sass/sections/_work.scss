@@ -88,8 +88,6 @@ $FADE_ANIMATION_DELAY: 450ms;
         > .project {
           cursor: pointer;
 
-          width: px-to-rem(400);
-
           position: relative;
 
           overflow-y: hidden;
@@ -164,7 +162,9 @@ $FADE_ANIMATION_DELAY: 450ms;
           }
 
           img {
-            height: 100%;
+            height: px-to-rem(210);
+            width: px-to-rem(400);
+            object-fit: cover;
           }
 
           // Decription
